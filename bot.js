@@ -1,9 +1,10 @@
 /* Ark's Discord Bot
 *  Creator: @Arkanon 
 *  Date Created: April 12, 2018
-*  Last Updated: April 13, 2018
+*  Last Updated: April 17, 2018
 */
 
+<script type ="text/javascript" src="discord.VERSION.min.jk"></script>
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./auth.json");
@@ -13,6 +14,7 @@ client.on("ready", () => {
     console.log("${config.name} reporting for duty!");
     console.user.setActivity('Doing bot things');
 });
+client.login
 
 //This will prompt advice when a user types '!advice'.
 client.on("message", async message => {
@@ -32,6 +34,12 @@ client.on("message", async message => {
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip).
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+    }
+    else if(command === "advice"){ 
+        const m = 
+    }
+    else if(command === join){
+        
     }
     else {
         const m = await message.channel.send("Command not found!");        
