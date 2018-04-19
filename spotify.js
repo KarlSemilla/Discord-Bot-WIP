@@ -1,1 +1,1 @@
-var http = require("http);
+const config = require();

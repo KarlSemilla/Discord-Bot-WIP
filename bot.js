@@ -4,17 +4,17 @@
 *  Last Updated: April 17, 2018
 */
 
-<script type ="text/javascript" src="discord.VERSION.min.jk"></script>
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./auth.json");
-const info = require("package.json");
+const info = require("./package.json");
+
+client.login(config.token);
 
 client.on("ready", () => {
     console.log("${config.name} reporting for duty!");
     console.user.setActivity('Doing bot things');
 });
-client.login
 
 //This will prompt advice when a user types '!advice'.
 client.on("message", async message => {
@@ -35,15 +35,25 @@ client.on("message", async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
-    else if(command === "advice"){ 
-        const m = 
-    }
+    //Bot will join the user's channel.
     else if(command === join){
-        
+        if(message.member.joinChannel){
+            message.member.voiceChannel.join()
+            .then(connection => {
+                message.reply("Connection Successful!");
+            })
+            .catch(console.log);
+        }
+        //Will occur when user is not in a voice channel.
+        else{
+            message.reply("You must join a channel first!")
+        }
     }
+    else if(command === "suggestion"){
+        message.channel.send("Message @Arkanon#6160 on Discord for any suggestions regarding this bot!");
+    }
+    //If command doesn't exist or if command is incorrectly typed, then this will happen.
     else {
         const m = await message.channel.send("Command not found!");        
     }
 });
-
-client.login(config.token);
